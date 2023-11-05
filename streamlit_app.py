@@ -35,7 +35,7 @@ streamlit.dataframe(fruityvice_normalized)
 
 import snowflake.connector
 
-[snowflake]
+##[snowflake]
 user="rgfeb09"
 password="SM191act99!!"
 account="SYZ0WZE-XG33224"
