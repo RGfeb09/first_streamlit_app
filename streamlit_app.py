@@ -35,15 +35,6 @@ streamlit.dataframe(fruityvice_normalized)
 
 import snowflake.connector
 
-##[snowflake]
-user = "RGfeb09"
-password = "SM191act99!!"
-account = "SYZ0WZE-XG33224"
-warehouse = "pc_rivery_wh" 
-database = "pc_rivery_db" 
-schema = "public"
-role = "accountadmin"
-
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
