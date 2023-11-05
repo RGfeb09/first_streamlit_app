@@ -49,7 +49,7 @@ streamlit.header("The fruitload list contains:")
 #Snowflake-related functions
 
 def get_fruit_load_list():
-    with my_cnx.cursor() as my_curr:
+    with my_cnx.cursor() as my_cur:
          my_cur.execute("select * from fruit_load_list")
          return my_cur.fetchall()
 
@@ -63,50 +63,4 @@ streamlit.text("Wait")
 
 
 #streamlit.stop()
-
-
-#import snowflake.connector
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
-my_data_row = my_cur.fetchone()
-streamlit.text("Hello from Snowflake:")
-streamlit.text(my_data_row)
-
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
-my_data_rows = my_cur.fetchall()
-streamlit.header("The fruitload list contains:")
-streamlit.dataframe(my_data_rows)
-
-# new section to display response
-streamlit.header('Fruityvice Fruit Advice!')
-fruit_choice = streamlit.text_input('What fruit would you like to add?','kiwi')
-streamlit.write('Thanks for adding', fruit_choice)
-#
-my_cur.execute("insert into fruit_load_list values ('test')")
-#insert into fruit_load_list values ('test')
-my_cur.execute("select * from  fruit_load_list")
-
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
-my_data_rows = my_cur.fetchall()
-streamlit.header("The test fruitload list contains:")
-streamlit.dataframe(my_data_rows)
-
-my_cur.execute("delete from fruit_load_list where fruit_name = 'test'")
-#insert into fruit_load_list values ('test')
-my_cur.execute("select * from  fruit_load_list")
-
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
-my_data_rows = my_cur.fetchall()
-streamlit.header("The new fruitload list contains:")
-streamlit.dataframe(my_data_rows)
-
-# this will not work correctly but go with it for now.
-# my_cur.execute("insert into fruit_load_list values ('from streamlit')")
 
