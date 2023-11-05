@@ -39,9 +39,10 @@ try:
 
 except URLerror as e:
       streamlit.error()
+streamlit.write('The user entered ', fruit_choice)   
 
 streamlit.text("STOP")
-#streamlit.stop()
+streamlit.stop()
 
 
 #import snowflake.connector
