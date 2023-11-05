@@ -59,6 +59,7 @@ streamlit.write('Thanks for adding', fruit_choice)
 my_cur.execute("delete from fruit_load_list where fruit_name = 'test'")
 #insert into fruit_load_list values ('test')
 my_cur.execute("select * from  fruit_load_list")
+streamlit.text("last line")
 
 # this will not work correctly but go with it for now.
 # my_cur.execute("insert into fruit_load_list values ('from streamlit')")
