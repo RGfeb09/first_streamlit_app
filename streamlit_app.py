@@ -26,12 +26,13 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 streamlit.dataframe(fruits_to_show)
 
 #New section to display fruityvice api response
-
+#create new repeatable code (function)
 def get_fruityvice_data(this_fruit_choice):  
     fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
     fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
     return fruityvice_normalized
-
+    
+#New section to display api response
 streamlit.header('Fruityvice Fruit Advice!')
 try:
     fruit_choice = streamlit.text_input('What fruit would you like information about?')
@@ -50,7 +51,7 @@ streamlit.header("The fruitload list contains:")
 
 def get_fruit_load_list():
     with my_cnx.cursor() as my_cur:
-         my_cur.execute("select * from fruit_load_list")
+         my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
          return my_cur.fetchall()
 
 # Add a button to load the fruit
@@ -76,6 +77,6 @@ if streamlit.button('Add a fruit to the list'):
    streamlit.text(back_from_function)
    my_cnx.close()
     
-streamlit.write('Thanks for adding', add_my_fruit)
+streamlit.write('Thanks for adding ', fruit_choice)
 
 #streamlit.stop()
